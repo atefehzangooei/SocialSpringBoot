@@ -1,11 +1,9 @@
 package com.social.social.repository
 
-import com.social.social.dto.PostResponse
 import com.social.social.model.Post
 import com.social.social.projection.PostProjection
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
-import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository

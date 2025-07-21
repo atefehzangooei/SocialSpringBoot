@@ -2,7 +2,6 @@ package com.social.social.controller
 
 import com.social.social.dto.LikeRequest
 import com.social.social.model.Like
-import com.social.social.repository.LikeRepository
 import com.social.social.repository.PostRepository
 import com.social.social.repository.UserRepository
 import com.social.social.service.LikeService

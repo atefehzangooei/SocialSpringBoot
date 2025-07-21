@@ -1,6 +1,5 @@
 package com.social.social.repository
 
-import com.social.social.dto.CommentResponse
 import com.social.social.model.Comment
 import com.social.social.projection.CommentProjection
 import org.springframework.data.jpa.repository.JpaRepository
