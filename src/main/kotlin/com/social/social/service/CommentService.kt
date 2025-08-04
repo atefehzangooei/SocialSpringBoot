@@ -6,6 +6,7 @@ import com.social.social.dto.CommentResponse
 import com.social.social.model.Comment
 import com.social.social.repository.CommentRepository
 import com.social.social.repository.UserRepository
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
@@ -13,7 +14,7 @@ class CommentService(private val commentRepository: CommentRepository,
     private val postService: PostService,
     private val userRepository: UserRepository) {
 
-    fun addComment(request: CommentRequest): Comment {
+    fun addComment(request: CommentRequest): CommentResponse {
 
         val post = postService.findPostEntityById(request.postId)
         val user = userRepository.findById(request.userId).orElseThrow { RuntimeException("User not found") }
@@ -24,7 +25,19 @@ class CommentService(private val commentRepository: CommentRepository,
             date = request.date,
             time = request.time
         )
-        return commentRepository.save(comment)
+        val saved = commentRepository.save(comment)
+        val commentResponse = CommentResponse(
+         id = saved.id,
+         userId = user.id,
+         userProfile = user.profileImage,
+         username = user.username,
+         comment = request.comment,
+         date = request.date,
+         time = request.time,
+         postId = request.postId
+        )
+        
+        return commentResponse
 
     }
 
