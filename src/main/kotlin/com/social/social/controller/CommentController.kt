@@ -2,6 +2,7 @@ package com.social.social.controller
 
 import com.social.social.dto.CommentReplay
 import com.social.social.dto.CommentRequest
+import com.social.social.dto.CommentResponse
 import com.social.social.model.Comment
 import com.social.social.repository.PostRepository
 import com.social.social.repository.UserRepository
@@ -22,7 +23,8 @@ class CommentController(private val commentService: CommentService,
     private val userRepository: UserRepository) {
 
     @PostMapping("/add")
-    fun addComment(@RequestBody request : CommentRequest) : Comment {
+    fun addComment(@RequestBody request : CommentRequest) : CommentResponse
+    {
 
         return commentService.addComment(request)
     }

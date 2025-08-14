@@ -1,5 +1,6 @@
 package com.social.social.repository
 
+import com.social.social.dto.StringMessage
 import com.social.social.model.Like
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
@@ -8,7 +9,7 @@ import org.springframework.data.repository.query.Param
 interface LikeRepository : JpaRepository<Like, Long>
 {
     @Query(value = """
-        SELECT users.* FROM likes 
+        SELECT users.*, likes.post_id, likes.user_id FROM likes 
         INNER JOIN users ON users.id = likes.user_id
         WHERE likes.post_id = :postId
     """, nativeQuery = true)
@@ -22,5 +23,5 @@ interface LikeRepository : JpaRepository<Like, Long>
     """, nativeQuery = true)
 
     fun disLikePost(@Param("postId") postId : Long,
-                    @Param("userId") userId : Long)
+                    @Param("userId") userId : Long )
 }

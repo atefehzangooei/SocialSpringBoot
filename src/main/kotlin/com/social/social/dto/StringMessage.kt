@@ -1,4 +1,5 @@
 package com.social.social.dto
 
-class StringMessage {
-}
+data class StringMessage (
+    val message : String
+)
