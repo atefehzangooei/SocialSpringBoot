@@ -10,5 +10,8 @@ interface PostProjection {
     fun getCommentcount() : Long
     fun getUsername() : String
     fun getProfileImage() : String
+    fun getIsLike() : Boolean
+    fun getIsSave() : Boolean
+
 
 }

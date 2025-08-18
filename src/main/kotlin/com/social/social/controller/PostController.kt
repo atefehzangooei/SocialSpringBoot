@@ -64,7 +64,7 @@ class PostController(private val postService: PostService, private val userRepos
     }
 
 
-    @GetMapping("/all")
-    fun getAllPosts() : List<PostResponse> = postService.getAllPosts()
+    @GetMapping("/all/{userId}")
+    fun getAllPosts(@PathVariable userId : Long) : List<PostResponse> = postService.getAllPosts(userId)
 
 }
