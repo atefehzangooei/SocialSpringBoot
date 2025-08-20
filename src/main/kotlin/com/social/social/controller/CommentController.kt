@@ -23,9 +23,7 @@ class CommentController(private val commentService: CommentService,
     private val userRepository: UserRepository) {
 
     @PostMapping("/add")
-    fun addComment(@RequestBody request : CommentRequest) : CommentResponse
-    {
-
+    fun addComment(@RequestBody request : CommentRequest) : CommentResponse {
         return commentService.addComment(request)
     }
 

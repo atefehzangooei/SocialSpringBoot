@@ -19,12 +19,13 @@ class DataLoader(
         val user = User(username = "atefeh70", password = "1234", profileImage = "myimage.jpg",
             phone = "09175282874", link = "nnnnn", date = "14.4/2/10", time = "18:25", email = "mmmm",
         bio = "ggggggg")
-        userRepository.save(user)
+       // userRepository.save(user)
 
         println("new user saved!")
 
         val newPost = PostRequest(1, "new postfefef", "1404/03/10", "18:00")
-        postController.addPost(newPost)
+       //
+        // postController.addPost(newPost)
 
         println("new post saved!")
     }
