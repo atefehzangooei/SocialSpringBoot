@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
 {
-
     @Query("""
         SELECT
           post.id as id,

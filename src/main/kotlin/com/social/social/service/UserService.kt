@@ -1,5 +1,7 @@
 package com.social.social.service
 
+import com.social.social.dto.SignupRequest
+import com.social.social.dto.StringMessage
 import com.social.social.model.User
 import com.social.social.repository.UserRepository
 import org.springframework.stereotype.Service
@@ -21,6 +23,27 @@ class UserService(private val userRepository: UserRepository) {
         else
             null
 
+    }
+
+    fun signUp(request : SignupRequest) : StringMessage{
+        if(userRepository.existByUsername(request.username)){
+            return StringMessage("repeated username")
+        }
+        else{
+            val newUser = User(
+                username = request.username,
+                password = request.password,
+                phone = request.phone,
+                link = "",
+                date = "",
+                time = "",
+                profileImage = "",
+                email = "",
+                bio = ""
+            )
+            userRepository.save(newUser)
+            return StringMessage("success")
+        }
     }
 
 }

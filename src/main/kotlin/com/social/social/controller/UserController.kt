@@ -1,5 +1,7 @@
 package com.social.social.controller
 
+import com.social.social.dto.SignupRequest
+import com.social.social.dto.StringMessage
 import com.social.social.model.User
 import com.social.social.service.UserService
 import org.springframework.http.ResponseEntity
@@ -43,6 +45,14 @@ class UserController(private val userService: UserService) {
             ResponseEntity.notFound().build()
 
     }
+
+    @PostMapping("/signup")
+    fun signUp(@RequestBody request : SignupRequest) : StringMessage{
+        return userService.signUp(request)
+    }
+
+
+
 
 
 }
