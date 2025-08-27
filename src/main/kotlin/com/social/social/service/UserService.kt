@@ -1,9 +1,13 @@
 package com.social.social.service
 
+import com.social.social.dto.SigninRequest
+import com.social.social.dto.SigninResponse
 import com.social.social.dto.SignupRequest
 import com.social.social.dto.StringMessage
 import com.social.social.model.User
 import com.social.social.repository.UserRepository
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
@@ -43,6 +47,29 @@ class UserService(private val userRepository: UserRepository) {
             )
             userRepository.save(newUser)
             return StringMessage("success")
+        }
+    }
+
+    fun signIn(request: SigninRequest) : ResponseEntity<SigninResponse> {
+        val user = userRepository.signIn(request.username, request.password)
+
+        return if(user == null){
+            ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
+        }
+        else{
+            val data = SigninResponse(
+                id = user.getId(),
+                username = user.getUsername(),
+                password = user.getPassword(),
+                phone = user.getPhone(),
+                email = user.getEmail(),
+                link = user.getLink(),
+                bio = user.getBio(),
+                date = user.getDate(),
+                time = user.getTime(),
+                profileImage = user.getProfileImage()
+            )
+            ResponseEntity.ok(data)
         }
     }
 

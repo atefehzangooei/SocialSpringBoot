@@ -1,5 +1,7 @@
 package com.social.social.controller
 
+import com.social.social.dto.SigninRequest
+import com.social.social.dto.SigninResponse
 import com.social.social.dto.SignupRequest
 import com.social.social.dto.StringMessage
 import com.social.social.model.User
@@ -51,7 +53,10 @@ class UserController(private val userService: UserService) {
         return userService.signUp(request)
     }
 
-
+    @PostMapping("/signin")
+    fun signIn(@RequestBody request : SigninRequest) : ResponseEntity<SigninResponse>{
+        return userService.signIn(request)
+    }
 
 
 
