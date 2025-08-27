@@ -40,4 +40,14 @@ interface UserRepository : JpaRepository<User,Long>
     fun signIn(@Param("username") username : String,
                @Param("password") password : String) : SigninProjection?
 
+
+    @Query(value = """
+        SELECT COUNT(id) > 0
+        FROM users
+        WHERE username = :username
+        AND phone = :phone
+        """, nativeQuery = true)
+    fun existUserByPhoneUsername(@Param("username") username : String,
+                      @Param("phone") phone : String) : Boolean
+
 }

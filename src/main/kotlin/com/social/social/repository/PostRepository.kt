@@ -19,8 +19,7 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
           post.time as time,
           COUNT(DISTINCT likes.post_id) as likecount,
           COUNT(comment.post_id) as commentcount,
-          users.username a
-          s username,
+          users.username as username,
           users.profile_image as profileImage,
           CASE WHEN EXISTS (
         SELECT 1 

@@ -1,11 +1,9 @@
 package com.social.social.service
 
-import com.social.social.dto.SigninRequest
-import com.social.social.dto.SigninResponse
-import com.social.social.dto.SignupRequest
-import com.social.social.dto.StringMessage
+import com.social.social.dto.*
 import com.social.social.model.User
 import com.social.social.repository.UserRepository
+import org.apache.logging.log4j.message.StringFormattedMessage
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
@@ -72,5 +70,15 @@ class UserService(private val userRepository: UserRepository) {
             ResponseEntity.ok(data)
         }
     }
+
+    fun forgetPssword(request : ForgetRequest) : StringMessage{
+        return if(userRepository.existUserByPhoneUsername(request.username, request.phone)){
+            StringMessage(message = "sms")
+        }
+        else{
+            StringMessage(message = "no user")
+        }
+    }
+
 
 }

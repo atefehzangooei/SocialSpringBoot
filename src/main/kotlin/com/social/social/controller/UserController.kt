@@ -1,9 +1,6 @@
 package com.social.social.controller
 
-import com.social.social.dto.SigninRequest
-import com.social.social.dto.SigninResponse
-import com.social.social.dto.SignupRequest
-import com.social.social.dto.StringMessage
+import com.social.social.dto.*
 import com.social.social.model.User
 import com.social.social.service.UserService
 import org.springframework.http.ResponseEntity
@@ -58,6 +55,10 @@ class UserController(private val userService: UserService) {
         return userService.signIn(request)
     }
 
+    @PostMapping("/forgetpassword")
+    fun forgetPassword(@RequestBody request : ForgetRequest) : StringMessage{
+        return userService.forgetPssword(request)
+    }
 
 
 }
