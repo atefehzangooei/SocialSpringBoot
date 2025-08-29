@@ -80,5 +80,21 @@ class UserService(private val userRepository: UserRepository) {
         }
     }
 
+    fun getUserInfo(userId : Long) : UserInfo{
+        val userInfo = userRepository.getUserInfo(userId)
+        return UserInfo(
+            id = userInfo.getId(),
+            username = userInfo.getUsername(),
+            password = userInfo.getPassword(),
+            email = userInfo.getEmail(),
+            phone = userInfo.getPhone(),
+            link = userInfo.getLink(),
+            bio = userInfo.getBio(),
+            profileImage = userInfo.getProfileImage(),
+            follower = userInfo.getFollower(),
+            following = userInfo.getFollowing(),
+            postCount = userInfo.getPostCount()
+            )
+    }
 
 }

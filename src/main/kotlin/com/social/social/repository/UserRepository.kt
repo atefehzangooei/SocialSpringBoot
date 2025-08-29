@@ -4,6 +4,7 @@ import com.social.social.dto.SigninResponse
 import com.social.social.dto.StringMessage
 import com.social.social.model.User
 import com.social.social.projection.SigninProjection
+import com.social.social.projection.UserInfoProjection
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
@@ -49,5 +50,32 @@ interface UserRepository : JpaRepository<User,Long>
         """, nativeQuery = true)
     fun existUserByPhoneUsername(@Param("username") username : String,
                       @Param("phone") phone : String) : Boolean
+
+    @Query(value = """
+        SELECT 
+        users.id as id,
+        users.username as username,
+        users.password as password,
+        users.email as email,
+        users.bio as bio
+        users.link as link,
+        users.profile_image as profileImage,
+        users.phone as phone,
+        
+        (SELECT COUNT(id) 
+         FROM followers 
+         WHERE follower_id = :userId) as follower,
+       
+        (SELECT COUNT(id) 
+         FROM followers 
+         WHERE following_id = :userId) as following, 
+         
+         (SELECT COUNT(id) 
+         FROM post 
+         WHERE user_id = :userId) as postCount
+         
+    """, nativeQuery = true)
+    fun getUserInfo(@Param("userId") userId : Long) : UserInfoProjection
+
 
 }
