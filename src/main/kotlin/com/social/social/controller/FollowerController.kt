@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 class FollowerController(private val followerService: FollowerService) {
 
     @PostMapping("/follow")
-    fun follow(@RequestBody request : FollowRequest) : Follower = followerService.follow(request)
+    fun follow(@RequestBody request : FollowRequest) = followerService.follow(request)
 
     @DeleteMapping("/unfollow")
     fun unfollow(@PathVariable followerId : Long,

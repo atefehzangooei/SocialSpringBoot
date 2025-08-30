@@ -67,7 +67,7 @@ class PostController(private val postService: PostService, private val userRepos
     @GetMapping("/follower/{userId}")
     fun getPostsByFollower(@PathVariable userId : Long) : List<PostResponse> = postService.getPostsByFollower(userId)
 
-    @GetMapping("/all/{userid}")
+    @GetMapping("/all/{userId}")
     fun getPostsByUserid(@PathVariable userId : Long) : List<PostResponse>
     = postService.getPostsByUserid(userId)
 }

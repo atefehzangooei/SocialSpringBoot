@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 class FollowerService(private val followerRepository: FollowerRepository,
     private val userService: UserService) {
 
-    fun follow(request : FollowRequest) : Follower {
+    fun follow(request : FollowRequest) {
         val followerUser = userService.getUserById(request.followerId)
         val followingUser = userService.getUserById(request.followingId)
         val newFollower = Follower(
@@ -19,7 +19,7 @@ class FollowerService(private val followerRepository: FollowerRepository,
             date = request.date,
             time = request.time
         )
-        return newFollower
+        followerRepository.save(newFollower)
     }
 
     fun unfollow(followerId : Long, followingId : Long) = followerRepository.unfollow(followerId, followingId)

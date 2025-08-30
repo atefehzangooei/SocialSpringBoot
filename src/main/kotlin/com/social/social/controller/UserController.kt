@@ -20,7 +20,7 @@ class UserController(private val userService: UserService) {
     @GetMapping
     fun getAllUsers() : List<User> = userService.getAllUsers()
 
-    @GetMapping("/{userid}")
+    @GetMapping("/{userId}")
     fun getUserInfo(@PathVariable userId : Long) = userService.getUserById(userId)
 
     @PostMapping

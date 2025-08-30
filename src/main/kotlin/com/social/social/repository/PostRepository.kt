@@ -33,13 +33,19 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
         WHERE save_post.post_id = post.id AND save_post.user_id = :userId
     ) THEN true ELSE false END AS isSave
     
-        FROM users
-        INNER JOIN post
-        ON users.id = post.user_id
+        FROM post
+        LEFT JOIN users
+        ON post.user_id = users.id
         LEFT JOIN likes
         ON post.id = likes.post_id
         INNER JOIN comment
         ON post.id = comment.post_id
+        
+        WHERE post.user_id IN (
+        SELECT following_id 
+        FROM followers
+        WHERE follower_id = :userId
+        )
         GROUP BY post.id, post.user_id, post.caption, post.date, post.time, users.username, users.profile_image
         ORDER BY post.id DESC
     """, nativeQuery = true)
