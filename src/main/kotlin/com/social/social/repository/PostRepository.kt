@@ -17,8 +17,8 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
           post.caption as caption,
           post.date as date, 
           post.time as time,
-          COUNT(DISTINCT likes.post_id) as likecount,
-          COUNT(comment.post_id) as commentcount,
+          (SELECT COUNT(*) FROM likes WHERE post_id = post.id ) as likecount,
+          (SELECT COUNT(*) FROM comment WHERE post_id = post.id ) as commentcount,
           users.username as username,
           users.profile_image as profileImage,
           CASE WHEN EXISTS (
@@ -36,10 +36,6 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
         FROM post
         LEFT JOIN users
         ON post.user_id = users.id
-        LEFT JOIN likes
-        ON post.id = likes.post_id
-        INNER JOIN comment
-        ON post.id = comment.post_id
         
         WHERE post.user_id IN (
         SELECT following_id 
@@ -81,7 +77,7 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
         ON users.id = post.user_id
         LEFT JOIN likes
         ON post.id = likes.post_id
-        INNER JOIN comment
+        LEFT JOIN comment
         ON post.id = comment.post_id
         WHERE post.user_id = :userId
         GROUP BY post.id, post.user_id, post.caption, post.date, post.time, users.username, users.profile_image
