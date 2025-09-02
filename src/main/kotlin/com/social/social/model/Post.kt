@@ -27,5 +27,6 @@ data class Post(
     val date : String,
 
     @Column(name = "time", nullable = false)
-    val time : String
+    val time : String,
+
 )

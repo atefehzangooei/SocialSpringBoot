@@ -1,6 +1,7 @@
 package com.social.social.service
 
 import com.social.social.dto.PostResponse
+import com.social.social.dto.SearchRequest
 
 import com.social.social.model.Post
 import com.social.social.projection.PostProjection
@@ -78,5 +79,24 @@ class PostService(private val postRepository: PostRepository) {
     fun findPostEntityById(postId : Long) : Post{
         val post = postRepository.findById(postId).orElseThrow { RuntimeException("post not found") }
         return post
+    }
+
+    fun searchPost(request : SearchRequest) : List<PostResponse> {
+        return postRepository.searchPost(request.userId, request.text).map {
+            PostResponse(
+                id = it.getId(),
+                caption = it.getCaption(),
+                date = it.getDate(),
+                time = it.getTime(),
+                userId = it.getUserid(),
+                userProfile = it.getProfileImage(),
+                username = it.getUsername(),
+                likeCount = it.getLikecount(),
+                commentCount = it.getCommentcount(),
+                image = "",
+                isLike = it.getIsLike(),
+                isSave = it.getIsSave()
+            )
+        }
     }
 }

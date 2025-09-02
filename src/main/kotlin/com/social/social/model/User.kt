@@ -27,7 +27,7 @@ data class User(
     @Column(name = "time")
     val time : String,
 
-    @Column(name = "profile_image")
+    @Column(name = "profile_image",)
     val profileImage : String,
 
     @Column(name = "email")

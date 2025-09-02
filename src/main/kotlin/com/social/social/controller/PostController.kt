@@ -2,6 +2,7 @@ package com.social.social.controller
 
 import com.social.social.dto.PostRequest
 import com.social.social.dto.PostResponse
+import com.social.social.dto.SearchRequest
 import com.social.social.model.Post
 import com.social.social.repository.UserRepository
 import com.social.social.service.PostService
@@ -63,11 +64,18 @@ class PostController(private val postService: PostService, private val userRepos
         return postService.addPost(post)
     }
 
-
     @GetMapping("/follower/{userId}")
-    fun getPostsByFollower(@PathVariable userId : Long) : List<PostResponse> = postService.getPostsByFollower(userId)
+    fun getPostsByFollower(@PathVariable userId : Long) : List<PostResponse>
+        = postService.getPostsByFollower(userId)
+
+
 
     @GetMapping("/all/{userId}")
     fun getPostsByUserid(@PathVariable userId : Long) : List<PostResponse>
-    = postService.getPostsByUserid(userId)
+        = postService.getPostsByUserid(userId)
+
+
+    @GetMapping("/search")
+    fun searchPost(@RequestBody request: SearchRequest)
+        = postService.searchPost(request)
 }
