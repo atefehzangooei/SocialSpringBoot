@@ -115,8 +115,9 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
         GROUP BY post.id, post.user_id, post.caption, post.date, post.time, users.username, users.profile_image
         ORDER BY post.id DESC
     """, nativeQuery = true)
-    fun searchPost(@Param("userId") userId : Long,
-                   @Param("text") text : String) : List<PostProjection>
+    fun searchPost(@Param("text") text : String,
+                   @Param("userId") userId : Long
+                   ) : List<PostProjection>
 
 
 

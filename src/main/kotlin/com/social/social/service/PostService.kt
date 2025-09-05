@@ -81,8 +81,8 @@ class PostService(private val postRepository: PostRepository) {
         return post
     }
 
-    fun searchPost(request : SearchRequest) : List<PostResponse> {
-        return postRepository.searchPost(request.userId, request.text).map {
+    fun searchPost(text : String, userId : Long) : List<PostResponse> {
+        return postRepository.searchPost(text, userId).map {
             PostResponse(
                 id = it.getId(),
                 caption = it.getCaption(),

@@ -75,7 +75,8 @@ class PostController(private val postService: PostService, private val userRepos
         = postService.getPostsByUserid(userId)
 
 
-    @GetMapping("/search")
-    fun searchPost(@RequestBody request: SearchRequest)
-        = postService.searchPost(request)
+    @GetMapping("/search/{text}/{userId}")
+    fun searchPost(@PathVariable text: String,
+                   @PathVariable userId : Long)
+        = postService.searchPost(text, userId)
 }
