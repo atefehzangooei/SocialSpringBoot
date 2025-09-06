@@ -42,6 +42,7 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
         FROM followers
         WHERE follower_id = :userId
         )
+        OR post.user_id = :userId
         GROUP BY post.id, post.user_id, post.caption, post.date, post.time, users.username, users.profile_image
         ORDER BY post.id DESC
     """, nativeQuery = true)
