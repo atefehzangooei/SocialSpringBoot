@@ -64,9 +64,11 @@ class PostController(private val postService: PostService, private val userRepos
         return postService.addPost(post)
     }
 
-    @GetMapping("/follower/{userId}")
-    fun getPostsByFollower(@PathVariable userId : Long) : List<PostResponse>
-        = postService.getPostsByFollower(userId)
+    @GetMapping("/follower/{userId}/{lastSeenId}/{size}")
+    fun getPostsByFollower(@PathVariable userId : Long,
+                           @PathVariable lastSeenId : Long?,
+                           @PathVariable size : Int) : List<PostResponse>
+        = postService.getPostsByFollower(userId, lastSeenId, size)
 
 
 

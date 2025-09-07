@@ -15,8 +15,8 @@ class PostService(private val postRepository: PostRepository) {
 
     fun addPost(post: Post): Post = postRepository.save(post)
 
-    fun getPostsByFollower(userId : Long): List<PostResponse> {
-        return postRepository.getPostsByFollower(userId).map {
+    fun getPostsByFollower(userId : Long, lastSeenId : Long?, size : Int): List<PostResponse> {
+        return postRepository.getPostsByFollower(userId, lastSeenId, size).map {
             PostResponse(
                 id = it.getId(),
                 caption = it.getCaption(),

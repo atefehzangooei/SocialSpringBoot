@@ -37,16 +37,21 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
         LEFT JOIN users
         ON post.user_id = users.id
         
-        WHERE post.user_id IN (
+        WHERE ( post.user_id IN (
         SELECT following_id 
         FROM followers
         WHERE follower_id = :userId
         )
-        OR post.user_id = :userId
+        OR post.user_id = :userId)
+        AND (:lastSeenId = -1 OR post.id < :lastSeenId)
+        
         GROUP BY post.id, post.user_id, post.caption, post.date, post.time, users.username, users.profile_image
         ORDER BY post.id DESC
+        LIMIT :size
     """, nativeQuery = true)
-    fun getPostsByFollower(@Param("userId") userId : Long) : List<PostProjection>
+    fun getPostsByFollower(@Param("userId") userId : Long,
+                           @Param("lastSeenId") lastSeenId : Long?,
+                           @Param("size") size : Int) : List<PostProjection>
 
 
 
