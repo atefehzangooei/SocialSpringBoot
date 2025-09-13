@@ -35,8 +35,8 @@ class PostService(private val postRepository: PostRepository) {
         //return posts.toResponseList()
     }
 
-    fun getPostsByUserid(userId : Long): List<PostResponse> {
-        return postRepository.getPostsByUserid(userId).map {
+    fun getPostsByUserid(userId : Long, lastSeenId: Long?, size: Int): List<PostResponse> {
+        return postRepository.getPostsByUserid(userId, lastSeenId, size).map {
             PostResponse(
                 id = it.getId(),
                 caption = it.getCaption(),
@@ -82,8 +82,8 @@ class PostService(private val postRepository: PostRepository) {
         return post
     }
 
-    fun searchPost(text : String, userId : Long) : List<PostResponse> {
-        return postRepository.searchPost(text, userId).map {
+    fun searchPost(text : String, userId : Long, lastSeenId: Long?, size : Int) : List<PostResponse> {
+        return postRepository.searchPost(text, userId, lastSeenId, size).map {
             PostResponse(
                 id = it.getId(),
                 caption = it.getCaption(),

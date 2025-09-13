@@ -83,10 +83,15 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
         ON users.id = post.user_id
       
         WHERE post.user_id = :userId
+        AND (:lastSeenId = -1 OR post.id < :lastSeenId)
+
         GROUP BY post.id, post.user_id, post.caption, post.date, post.time, users.username, users.profile_image
         ORDER BY post.id DESC
+        LIMIT :size
     """, nativeQuery = true)
-    fun getPostsByUserid(@Param("userId") userId : Long) : List<PostProjection>
+    fun getPostsByUserid(@Param("userId") userId : Long,
+                         @Param("lastSeenId") lastSeenId : Long?,
+                         @Param("size") size : Int) : List<PostProjection>
 
 
     @Query("""
@@ -117,13 +122,15 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
         ON post.user_id = users.id
         
         WHERE post.caption like %:text%
-        
+       AND (:lastSeenId = -1 OR post.id < :lastSeenId) 
         GROUP BY post.id, post.user_id, post.caption, post.date, post.time, users.username, users.profile_image
         ORDER BY post.id DESC
+        LIMIT :size
     """, nativeQuery = true)
     fun searchPost(@Param("text") text : String,
-                   @Param("userId") userId : Long
-                   ) : List<PostProjection>
+                   @Param("userId") userId : Long,
+                   @Param("lastSeenId") lastSeenId: Long?,
+                   @Param("size") size: Int) : List<PostProjection>
 
 
 

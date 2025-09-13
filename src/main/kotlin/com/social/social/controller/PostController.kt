@@ -72,13 +72,17 @@ class PostController(private val postService: PostService, private val userRepos
 
 
 
-    @GetMapping("/all/{userId}")
-    fun getPostsByUserid(@PathVariable userId : Long) : List<PostResponse>
-        = postService.getPostsByUserid(userId)
+    @GetMapping("/all/{userId}/{lastSeenId}/{size}")
+    fun getPostsByUserid(@PathVariable userId : Long,
+                         @PathVariable lastSeenId : Long?,
+                         @PathVariable size : Int) : List<PostResponse>
+        = postService.getPostsByUserid(userId, lastSeenId, size)
 
 
-    @GetMapping("/search/{text}/{userId}")
+    @GetMapping("/search/{text}/{userId}/{lastSeenId}/{size}")
     fun searchPost(@PathVariable text: String,
-                   @PathVariable userId : Long)
-        = postService.searchPost(text, userId)
+                   @PathVariable userId : Long,
+                   @PathVariable lastSeenId : Long?,
+                   @PathVariable size : Int)
+        = postService.searchPost(text, userId, lastSeenId, size)
 }
