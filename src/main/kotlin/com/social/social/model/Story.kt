@@ -21,6 +21,10 @@ data class Story (
     val date : String,
 
     @Column(name = "time")
-    val time : String
+    val time : String,
+
+    //lifetime in seconds
+    @Column(name = "lifetime")
+    val lifetime : Int
 
 )
