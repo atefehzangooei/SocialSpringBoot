@@ -2,13 +2,14 @@ package com.social.social.model
 
 import jakarta.persistence.*
 
+const val LIFETIME : Int = 10
 
 @Entity
 @Table(name = "story")
 data class Story (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id : Long,
+    val id : Long = 0,
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

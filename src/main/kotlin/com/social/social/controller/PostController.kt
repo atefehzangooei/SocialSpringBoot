@@ -71,7 +71,6 @@ class PostController(private val postService: PostService, private val userRepos
         = postService.getPostsByFollower(userId, lastSeenId, size)
 
 
-
     @GetMapping("/all/{userId}/{lastSeenId}/{size}")
     fun getPostsByUserid(@PathVariable userId : Long,
                          @PathVariable lastSeenId : Long?,
