@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface StoryRepository : JpaRepository<Story,Long>  {
 
-    //error
+    //error query
     @Query("""
         SELECT
          story.user_id as userId,
