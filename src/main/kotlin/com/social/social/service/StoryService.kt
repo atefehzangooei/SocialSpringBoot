@@ -47,5 +47,29 @@ class StoryService(private val storyRepository: StoryRepository,
         }
     }
 
-    fun getStoryOfFollowers(userId : Long) = storyRepository.getStoryOfFollowers(userId)
+    fun getStoryOfFollowers(userId : Long) : List<StoryResponse> {
+        return  storyRepository.getStoryOfFollowers(userId).map {
+            StoryResponse(
+                userId = it.getUserid(),
+                profileImage = it.getProfileImage(),
+                username = it.getUsername(),
+                image = it.getImage(),
+                date = it.getDate(),
+                time = it.getTime()
+            )
+        }
+    }
+
+    fun getStoryByUserid(userId : Long) : List<StoryResponse> {
+        return  storyRepository.getStoryOfFollowers(userId).map {
+            StoryResponse(
+                userId = it.getUserid(),
+                profileImage = it.getProfileImage(),
+                username = it.getUsername(),
+                image = it.getImage(),
+                date = it.getDate(),
+                time = it.getTime()
+            )
+        }
+    }
 }

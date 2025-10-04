@@ -29,4 +29,7 @@ class StoryController(private val storyService: StoryService)
     fun getStoryOfFollowers(@PathVariable("userId") userId : Long) =
         storyService.getStoryOfFollowers(userId)
 
+    @GetMapping("user/{userId}")
+    fun getStoryByUserid(@PathVariable("userId") userId : Long)=
+        storyService.getStoryByUserid(userId)
 }
