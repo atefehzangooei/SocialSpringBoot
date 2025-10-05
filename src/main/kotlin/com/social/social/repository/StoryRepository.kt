@@ -19,9 +19,13 @@ interface StoryRepository : JpaRepository<Story,Long>  {
          story.time as time,
          users.username as username,
          users.profile_image as profileImage
-         FROM story INNER JOIN users
-         ON story.user_id = users.id
+         FROM story 
+         INNER JOIN users
+         ON story.user_id = users.id 
+         INNER JOIN followers
+         ON followers.follower_id = users.id
          WHERE story.user_id = :userId
+         GROUP BY story.user_id
     """, nativeQuery = true)
     fun getStoryOfFollowers(@Param("userId") userId : Long) : List<StoryProjection>
 

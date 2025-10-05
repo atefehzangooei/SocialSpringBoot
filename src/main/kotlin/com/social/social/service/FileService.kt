@@ -13,7 +13,7 @@ class FileService {
         fun uploadFile(file: MultipartFile): String {
 
             val today = LocalDate.now()
-            val baseUploadDir: String = "uploads/"
+            val baseUploadDir = "uploads/"
             val uploadDir = "${baseUploadDir}${today.year}/${today.monthValue}/${today.dayOfMonth}/"
 
             Files.createDirectories(Paths.get(uploadDir))
