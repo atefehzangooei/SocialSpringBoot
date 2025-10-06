@@ -14,7 +14,7 @@ interface StoryRepository : JpaRepository<Story,Long>  {
     @Query("""
         SELECT
          story.user_id as userId,
-         story.file as image,
+         story.image as image,
          story.date as date,
          story.time as time,
          users.username as username,
