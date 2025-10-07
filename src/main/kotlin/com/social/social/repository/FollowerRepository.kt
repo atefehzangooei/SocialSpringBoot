@@ -22,20 +22,6 @@ interface FollowerRepository : JpaRepository<Follower, Long>
 
     @Query(value = """
         SELECT 
-        followers.following_id as userid,
-        users.username as username,
-        users.profile_image as profileImage
-        FROM followers 
-        INNER JOIN users
-        ON followers.following_id = users.id
-        WHERE followers.follower_id = :userId
-
-    """, nativeQuery = true)
-    fun getFollower(@Param("userId") userId : Long) : List<FollowerProjection>
-
-
-    @Query(value = """
-        SELECT 
         followers.follower_id as userid,
         users.username as username,
         users.profile_image as profileImage
@@ -43,6 +29,20 @@ interface FollowerRepository : JpaRepository<Follower, Long>
         INNER JOIN users
         ON followers.follower_id = users.id
         WHERE followers.following_id = :userId
+
+    """, nativeQuery = true)
+    fun getFollower(@Param("userId") userId : Long) : List<FollowerProjection>
+
+
+    @Query(value = """
+        SELECT 
+        followers.following_id as userid,
+        users.username as username,
+        users.profile_image as profileImage
+        FROM followers 
+        INNER JOIN users
+        ON followers.following_id = users.id
+        WHERE followers.follower_id = :userId
 
     """, nativeQuery = true)
     fun getFollowing(@Param("userId") userId : Long) : List<FollowerProjection>

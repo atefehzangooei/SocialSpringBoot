@@ -65,7 +65,7 @@ class StoryService(private val storyRepository: StoryRepository,
     }
 
     fun getStoryByUserid(userId : Long) : List<StoryResponse> {
-        return  storyRepository.getStoryOfFollowers(userId).map {
+        return  storyRepository.getStoryByUserid(userId).map {
             StoryResponse(
                 userId = it.getUserid(),
                 profileImage = it.getProfileImage(),
