@@ -24,9 +24,9 @@ interface StoryRepository : JpaRepository<Story,Long>  {
          FROM story 
          INNER JOIN users
          ON story.user_id = users.id 
-         INNER JOIN followers
+         LEFT JOIN followers
          ON followers.following_id = users.id
-         WHERE (followers.follower_id = :userId) OR (story.user_id = :userId)
+         WHERE (followers.follower_id = :userId OR story.user_id = :userId)
          GROUP BY story.user_id, story.date, story.time
     """, nativeQuery = true)
     fun getStoryOfFollowers(@Param("userId") userId : Long) : List<StoryProjection>
