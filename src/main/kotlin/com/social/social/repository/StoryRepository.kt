@@ -28,9 +28,10 @@ interface StoryRepository : JpaRepository<Story,Long>  {
          ON followers.following_id = users.id
          WHERE (followers.follower_id = :userId OR story.user_id = :userId)
          GROUP BY story.user_id, story.date, story.time
+
     """, nativeQuery = true)
     fun getStoryOfFollowers(@Param("userId") userId : Long) : List<StoryProjection>
-
+    //ORDER BY (CASE WHEN story.user_id = :userId THEN 0 ELSE 1 END), followers.id ASC
 
     @Query("""
         SELECT

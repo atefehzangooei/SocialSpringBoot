@@ -21,7 +21,7 @@ class StoryController(private val storyService: StoryService)
         storyService.addStory(userId, imageFile, date, time)
 
 
-    @DeleteMapping("/{storyId}")
+    @DeleteMapping("/delete/{storyId}")
     fun deleteStory(@PathVariable("storyId") storyId : Long) : StringMessage =
         storyService.deleteStory(storyId)
 
