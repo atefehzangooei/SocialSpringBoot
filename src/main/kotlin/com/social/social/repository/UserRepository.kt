@@ -5,7 +5,9 @@ import com.social.social.dto.StringMessage
 import com.social.social.model.User
 import com.social.social.projection.SigninProjection
 import com.social.social.projection.UserInfoProjection
+import jakarta.transaction.Transactional
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.http.ResponseEntity
@@ -78,4 +80,11 @@ interface UserRepository : JpaRepository<User,Long>
     fun getUserInfo(@Param("userId") userId : Long) : UserInfoProjection
 
 
+    @Modifying
+    @Query("""
+        update users set
+        profile_image = 'https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg'
+    """, nativeQuery = true)
+    @Transactional
+    fun updateProfile()
 }
