@@ -35,6 +35,6 @@ class DataLoader(
          val imageurl = "https://w0.peakpx.com/wallpaper/209/381/HD-wallpaper-background-abstract-1-jpg-design-colors-blue-thumbnail.jpg"
         storyRepository.addStaticStory(5, imageurl, "1404/03/12", "20:00")
         */
-       userRepository.updateProfile()
+      // userRepository.updateProfile()
     }
 }
