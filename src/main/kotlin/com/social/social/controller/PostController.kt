@@ -5,28 +5,35 @@ import com.social.social.dto.PostResponse
 import com.social.social.dto.SearchRequest
 import com.social.social.model.Post
 import com.social.social.repository.UserRepository
+import com.social.social.service.FileService
 import com.social.social.service.PostService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
+import java.io.File
+import java.nio.file.Paths
 
 @RestController
 @RequestMapping("/posts")
-class PostController(private val postService: PostService, private val userRepository: UserRepository) {
+class PostController(private val postService: PostService,
+                     private val userRepository: UserRepository,
+                     private val fileService: FileService) {
 
-    /*
+/*
     @PostMapping("/upload" , consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
 
-    fun uploadPost(@RequestPart("neveshtak") neveshtak : String,
-                   @RequestPart("image") image : MultipartFile) : ResponseEntity<String>{
-       // val imagePath = "/images/${image.originalFilename}"
+    fun uploadPost(@RequestPart("image") image : MultipartFile,
+                   @RequestPart("neveshtak") neveshtak : String,
+                   @RequestPart("date") date : String,
+                   @RequestPart("time") time : String
+    ) : ResponseEntity<String> {
 
-      //upload image
+     /* //upload image
      //   val uploadDir = "/images/"
         val uploadDir = "D:\\D\\Kotlin\\Project\\Social\\Spring Boot\\social\\images\\"
+        //val uploadDir = Paths.get(System.getProperty("images"))
         val path = File(uploadDir)
         if (!path.exists()) {
             path.mkdirs()  // اگر پوشه وجود ندارد، آن را بسازید
@@ -34,20 +41,26 @@ class PostController(private val postService: PostService, private val userRepos
         try {
             image.transferTo(File(uploadDir + image.originalFilename))
 
-            return ResponseEntity("پست جدید با موفقیت آپلود شد", HttpStatus.OK)
+            return ResponseEntity("success", HttpStatus.OK)
 
         }
         catch(e: Exception){
-            println("error is : ${e.message}")
+            return ResponseEntity(e.message, HttpStatus.INTERNAL_SERVER_ERROR)
+        } */
+        val imageAddress = fileService.uploadFile(image)
+        val user = userRepository.findById(request.userId)
+            .orElseThrow { RuntimeException("User Not Found") }
 
-            return ResponseEntity("خطا در آپلود فایل", HttpStatus.INTERNAL_SERVER_ERROR)
+        val post = Post(
+            user = user,
+            caption = request.caption,
+            date = request.date,
+            time = request.time
+        )
 
-        }
+        return postService.addPost(post)
+    }*/
 
-        //val newPost = Post(i)
-
-    }
-    */
 
     @PostMapping
     fun addPost(@RequestBody request : PostRequest) : Post{
