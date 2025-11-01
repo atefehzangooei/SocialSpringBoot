@@ -37,7 +37,7 @@ class LikeController(private val likeService: LikeService,
             StringMessage(success = true)
         }
         catch(e : Exception){
-            StringMessage(success = false)
+            StringMessage(success = false, message = e.toString())
         }
     }
 

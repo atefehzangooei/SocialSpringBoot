@@ -45,9 +45,9 @@ class StoryService(private val storyRepository: StoryRepository,
     fun deleteStory(storyId: Long): StringMessage {
         return if (storyRepository.existsById(storyId)) {
             storyRepository.deleteById(storyId)
-            StringMessage("success")
+            StringMessage(success = true)
         } else {
-            StringMessage("failure")
+            StringMessage(success = false, message = "خطایی رخ داده است")
         }
     }
 

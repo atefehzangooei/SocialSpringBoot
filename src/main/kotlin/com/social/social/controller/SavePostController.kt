@@ -37,10 +37,10 @@ class SavePostController(private val savePostService: SavePostService,
         )
         return try{
             savePostService.savePost(sp)
-            StringMessage(("yes"))
+            StringMessage(success = true)
         }
         catch(e : Exception){
-            StringMessage(("no"))
+            StringMessage(success = false, message = e.toString())
         }
     }
 

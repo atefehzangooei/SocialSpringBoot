@@ -3,6 +3,7 @@ package com.social.social.service
 import com.social.social.dto.CommentReplay
 import com.social.social.dto.CommentRequest
 import com.social.social.dto.CommentResponse
+import com.social.social.dto.StringMessage
 import com.social.social.model.Comment
 import com.social.social.repository.CommentRepository
 import com.social.social.repository.UserRepository
@@ -41,7 +42,16 @@ class CommentService(private val commentRepository: CommentRepository,
 
     }
 
-    fun deleteComment(commentId: Long) = commentRepository.deleteById(commentId)
+    fun deleteComment(commentId: Long) : StringMessage{
+        return try{
+            commentRepository.deleteById(commentId)
+            StringMessage(success = true)
+        }
+        catch (ex : Exception) {
+            StringMessage(success = false, message = "خطا در حذف")
+        }
+
+    }
 
 
     fun replayComment(request: CommentReplay): Comment {
