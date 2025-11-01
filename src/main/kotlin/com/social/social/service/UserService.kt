@@ -29,7 +29,8 @@ class UserService(private val userRepository: UserRepository) {
 
     fun signUp(request : SignupRequest) : StringMessage{
         if(userRepository.existByUsername(request.username)){
-            return StringMessage("repeated username")
+            return StringMessage(success = false,
+                message = "repeated username")
         }
         else{
             val newUser = User(
@@ -44,7 +45,7 @@ class UserService(private val userRepository: UserRepository) {
                 bio = ""
             )
             userRepository.save(newUser)
-            return StringMessage("success")
+            return StringMessage(success = true)
         }
     }
 
@@ -73,10 +74,10 @@ class UserService(private val userRepository: UserRepository) {
 
     fun forgetPssword(request : ForgetRequest) : StringMessage{
         return if(userRepository.existUserByPhoneUsername(request.username, request.phone)){
-            StringMessage(message = "sms")
+            StringMessage(success = true)
         }
         else{
-            StringMessage(message = "no user")
+            StringMessage(success = false, message = "no user")
         }
     }
 

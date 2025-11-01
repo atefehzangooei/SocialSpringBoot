@@ -34,10 +34,10 @@ class LikeController(private val likeService: LikeService,
         )
         return try{
             likeService.likePost(like)
-            StringMessage(("yes"))
+            StringMessage(success = true)
         }
         catch(e : Exception){
-            StringMessage(("no"))
+            StringMessage(success = false)
         }
     }
 
