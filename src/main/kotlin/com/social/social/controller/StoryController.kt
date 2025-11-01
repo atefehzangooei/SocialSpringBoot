@@ -17,8 +17,8 @@ class StoryController(private val storyService: StoryService)
     fun addStory(@RequestPart("imageFile") imageFile : MultipartFile,
                  @RequestPart("userId") userId : Long,
                  @RequestPart("date") date : String,
-                 @RequestPart("time") time : String) =
-        storyService.addStory(userId, imageFile, date, time)
+                 @RequestPart("time") time : String) : StoryResponse
+    = storyService.addStory(userId, imageFile, date, time)
 
 
     @DeleteMapping("/delete/{storyId}")

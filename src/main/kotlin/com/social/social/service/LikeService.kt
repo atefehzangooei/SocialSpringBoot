@@ -12,5 +12,13 @@ class LikeService(private val likeRepository: LikeRepository) {
 
     fun getLikeByPostId(postId : Long) : List<Like> = likeRepository.getLikesByPostId(postId)
 
-    fun disLikePost(postId: Long, user_id : Long) = likeRepository.disLikePost(postId, user_id)
+    fun disLikePost(postId: Long, user_id : Long) : StringMessage {
+        return try{
+            likeRepository.disLikePost(postId, user_id)
+            StringMessage(success = true)
+        }
+        catch(ex : Exception){
+            StringMessage(success = false, message = ex.toString())
+        }
+    }
 }

@@ -46,5 +46,6 @@ class LikeController(private val likeService: LikeService,
 
     @DeleteMapping("/dislike/{postId}/{userId}")
     fun disLikePost(@PathVariable postId: Long,
-                    @PathVariable userId : Long) = likeService.disLikePost(postId, userId)
+                    @PathVariable userId : Long) : StringMessage
+    = likeService.disLikePost(postId, userId)
 }

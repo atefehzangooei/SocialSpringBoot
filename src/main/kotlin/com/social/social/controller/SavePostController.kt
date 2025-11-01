@@ -49,7 +49,8 @@ class SavePostController(private val savePostService: SavePostService,
 
     @DeleteMapping("/{postId}/{userId}")
     fun unSavePost(@PathVariable postId : Long,
-                   @PathVariable userId : Long) = savePostService.unSavePost(postId, userId)
+                   @PathVariable userId : Long) : StringMessage
+    = savePostService.unSavePost(postId, userId)
 
     @GetMapping("/{postId}")
     fun getSavePost(@PathVariable postId: Long) = savePostService.getSavePost(postId)
