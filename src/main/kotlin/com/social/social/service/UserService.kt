@@ -24,7 +24,6 @@ class UserService(private val userRepository: UserRepository) {
             userRepository.save(newUser)
         else
             null
-
     }
 
     fun signUp(request : SignupRequest) : StringMessage{

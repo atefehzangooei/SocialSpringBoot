@@ -22,7 +22,7 @@ class UserController(private val userService: UserService) {
     fun getAllUsers() : List<User> = userService.getAllUsers()
 
     @GetMapping("/{userId}")
-    fun getUserInfo(@PathVariable userId : Long) = userService.getUserById(userId)
+    fun getUserInfo(@PathVariable userId : Long) = userService.getUserInfo(userId)
 
     @PostMapping
     fun createUser(@RequestBody user : User) : User = userService.createUser(user)
