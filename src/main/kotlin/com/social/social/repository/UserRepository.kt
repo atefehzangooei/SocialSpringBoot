@@ -59,7 +59,7 @@ interface UserRepository : JpaRepository<User,Long>
         users.username as username,
         users.password as password,
         users.email as email,
-        users.bio as bio
+        users.bio as bio,
         users.link as link,
         users.profile_image as profileImage,
         users.phone as phone,
@@ -75,6 +75,8 @@ interface UserRepository : JpaRepository<User,Long>
          (SELECT COUNT(id) 
          FROM post 
          WHERE user_id = :userId) as postCount
+         
+         FROM users where users.id = :userId
          
     """, nativeQuery = true)
     fun getUserInfo(@Param("userId") userId : Long) : UserInfoProjection
