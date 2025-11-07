@@ -2,6 +2,7 @@ package com.social.social.service
 
 import com.social.social.dto.StoryResponse
 import com.social.social.dto.StringMessage
+import com.social.social.dto.UserStory
 import com.social.social.model.STORY_DURATION
 import com.social.social.model.Story
 import com.social.social.repository.StoryRepository
@@ -34,10 +35,9 @@ class StoryService(private val storyRepository: StoryRepository,
             userId = userId,
             profileImage = userInfo.getProfileImage(),
             username = userInfo.getUsername(),
-            image = uploadedImage,
             date = date,
             time = time,
-            storyDuration = STORY_DURATION
+            duration = STORY_DURATION
         )
     }
 
@@ -57,24 +57,22 @@ class StoryService(private val storyRepository: StoryRepository,
                 userId = it.getUserid(),
                 profileImage = it.getProfileImage(),
                 username = it.getUsername(),
-                image = it.getImage(),
                 date = it.getDate(),
                 time = it.getTime(),
-                storyDuration = it.getStoryDuration()
+                duration = STORY_DURATION
             )
         }
     }
 
-    fun getStoryByUserid(userId : Long) : List<StoryResponse> {
+    fun getStoryByUserid(userId : Long) : List<UserStory> {
         return  storyRepository.getStoryByUserid(userId).map {
-            StoryResponse(
-                userId = it.getUserid(),
+            UserStory(
                 profileImage = it.getProfileImage(),
                 username = it.getUsername(),
                 image = it.getImage(),
                 date = it.getDate(),
                 time = it.getTime(),
-                storyDuration = it.getStoryDuration()
+                duration = STORY_DURATION
             )
         }
     }

@@ -2,6 +2,7 @@ package com.social.social.repository
 
 import com.social.social.model.Story
 import com.social.social.projection.StoryProjection
+import com.social.social.projection.UserStoryProjection
 import jakarta.transaction.Transactional
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
@@ -16,10 +17,9 @@ interface StoryRepository : JpaRepository<Story,Long>  {
     @Query("""
         SELECT
          story.user_id as userId,
-         story.image as image,
          story.date as date,
          story.time as time,
-         story.duration as storyDuration,
+         story.duration as duration,
          users.username as username,
          users.profile_image as profileImage
          FROM story 
@@ -36,7 +36,6 @@ interface StoryRepository : JpaRepository<Story,Long>  {
 
     @Query("""
         SELECT
-         story.user_id as userId,
          story.image as image,
          story.date as date,
          story.time as time,
@@ -46,7 +45,12 @@ interface StoryRepository : JpaRepository<Story,Long>  {
          ON story.user_id = users.id
          WHERE story.user_id = :userId
     """, nativeQuery = true)
-    fun getStoryByUserid(@Param("userId") userId : Long) : List<StoryProjection>
+    fun getStoryByUserid(@Param("userId") userId : Long) : List<UserStoryProjection>
+
+
+
+
+
 
 
     @Modifying
@@ -58,4 +62,6 @@ interface StoryRepository : JpaRepository<Story,Long>  {
                        @Param("image") image : String,
                        @Param("date") date : String,
                        @Param("time") time : String)
+
+
 }

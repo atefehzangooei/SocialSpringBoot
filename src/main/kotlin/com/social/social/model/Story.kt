@@ -2,7 +2,7 @@ package com.social.social.model
 
 import jakarta.persistence.*
 
-const val STORY_DURATION : Int = 10
+const val STORY_DURATION : Int = 5
 
 @Entity
 @Table(name = "story")
