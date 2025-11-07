@@ -7,5 +7,6 @@ interface StoryProjection {
     fun getImage() : String
     fun getDate() : String
     fun getTime() : String
+    fun getStoryDuration() : Int
 
 }

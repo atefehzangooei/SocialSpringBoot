@@ -1,9 +1,8 @@
 package com.social.social.service
 
-import com.social.social.dto.StoryRequest
 import com.social.social.dto.StoryResponse
 import com.social.social.dto.StringMessage
-import com.social.social.model.LIFETIME
+import com.social.social.model.STORY_DURATION
 import com.social.social.model.Story
 import com.social.social.repository.StoryRepository
 import com.social.social.repository.UserRepository
@@ -27,7 +26,7 @@ class StoryService(private val storyRepository: StoryRepository,
             image = uploadedImage,
             date = date,
             time = time,
-            lifetime = LIFETIME
+            duration = STORY_DURATION
         )
         storyRepository.save(story)
 
@@ -37,7 +36,8 @@ class StoryService(private val storyRepository: StoryRepository,
             username = userInfo.getUsername(),
             image = uploadedImage,
             date = date,
-            time = time
+            time = time,
+            storyDuration = STORY_DURATION
         )
     }
 
@@ -59,7 +59,8 @@ class StoryService(private val storyRepository: StoryRepository,
                 username = it.getUsername(),
                 image = it.getImage(),
                 date = it.getDate(),
-                time = it.getTime()
+                time = it.getTime(),
+                storyDuration = it.getStoryDuration()
             )
         }
     }
@@ -72,7 +73,8 @@ class StoryService(private val storyRepository: StoryRepository,
                 username = it.getUsername(),
                 image = it.getImage(),
                 date = it.getDate(),
-                time = it.getTime()
+                time = it.getTime(),
+                storyDuration = it.getStoryDuration()
             )
         }
     }

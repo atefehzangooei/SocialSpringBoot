@@ -2,7 +2,7 @@ package com.social.social.model
 
 import jakarta.persistence.*
 
-const val LIFETIME : Int = 10
+const val STORY_DURATION : Int = 10
 
 @Entity
 @Table(name = "story")
@@ -24,8 +24,8 @@ data class Story (
     @Column(name = "time")
     val time : String,
 
-    //lifetime in seconds
-    @Column(name = "lifetime")
-    val lifetime : Int
+    //duration in seconds
+    @Column(name = "duration")
+    val duration : Int
 
 )

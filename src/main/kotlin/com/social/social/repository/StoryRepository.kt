@@ -19,6 +19,7 @@ interface StoryRepository : JpaRepository<Story,Long>  {
          story.image as image,
          story.date as date,
          story.time as time,
+         story.duration as storyDuration,
          users.username as username,
          users.profile_image as profileImage
          FROM story 

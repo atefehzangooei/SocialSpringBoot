@@ -6,5 +6,6 @@ data class StoryResponse (
     val username : String,
     val image : String,
     val date : String,
-    val time : String
+    val time : String,
+    val storyDuration : Int
 )
