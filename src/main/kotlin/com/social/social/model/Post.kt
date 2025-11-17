@@ -20,7 +20,7 @@ data class Post(
     @JoinColumn(name = "user_id", nullable = false)
     val user: User,
 
-    @Column(name = "image", nullable = false)
+    @Column(name = "image")
     val image : String,
 
     @Column(name = "caption", nullable = false)

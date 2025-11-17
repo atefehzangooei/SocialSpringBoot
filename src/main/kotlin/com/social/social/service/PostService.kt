@@ -7,14 +7,27 @@ import com.social.social.dto.SearchRequest
 import com.social.social.model.Post
 import com.social.social.projection.PostProjection
 import com.social.social.repository.PostRepository
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 @Service
 class PostService(private val postRepository: PostRepository) {
     //  fun getPostsByFollowing(user_id : Long) : List<Post> = postRepository.GetPostByFollowing(user_id)
 
+    private val logger : Logger = LoggerFactory.getLogger(PostService::class.java)
+
     fun addPost(post: Post): PostResponse {
-       val newPost = postRepository.save(post)
+        logger.info("add post image = ${post.image}")
+        try {
+            val newPost = postRepository.save(post)
+        }
+        catch (ex : Exception){
+            logger.info("add post ex = ${ex.toString()}")
+        }
+
+        val newPost = postRepository.save(post)
+
         return PostResponse(
             id = newPost.id,
             caption = newPost.caption,
