@@ -8,9 +8,9 @@ data class PostResponse(
     val userId : Long,
     val userProfile : String,
     val username : String,
-    val likeCount : Long,
-    val commentCount : Long,
+    val likeCount : Long = 0,
+    val commentCount : Long = 0,
     val image : String,
-    val isLike : Boolean,
-    val isSave : Boolean
+    val isLike : Boolean = false,
+    val isSave : Boolean = false
 )

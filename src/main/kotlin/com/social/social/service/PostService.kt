@@ -13,7 +13,20 @@ import org.springframework.stereotype.Service
 class PostService(private val postRepository: PostRepository) {
     //  fun getPostsByFollowing(user_id : Long) : List<Post> = postRepository.GetPostByFollowing(user_id)
 
-    fun addPost(post: Post): Post = postRepository.save(post)
+    fun addPost(post: Post): PostResponse {
+       val newPost = postRepository.save(post)
+        return PostResponse(
+            id = newPost.id,
+            caption = newPost.caption,
+            date = newPost.date,
+            time = newPost.time,
+            image = newPost.image,
+            userId = newPost.user.id,
+            userProfile = newPost.user.profileImage,
+            username = newPost.user.username
+        )
+
+    }
 
     fun getPostsByFollower(userId : Long, lastSeenId : Long?, size : Int): List<PostResponse> {
         return postRepository.getPostsByFollower(userId, lastSeenId, size).map {
