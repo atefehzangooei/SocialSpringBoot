@@ -1,6 +1,5 @@
 package com.social.social.service
 
-import com.social.social.dto.PostImage
 import com.social.social.dto.PostResponse
 import com.social.social.dto.SearchRequest
 
@@ -53,7 +52,7 @@ class PostService(private val postRepository: PostRepository) {
                 username = it.getUsername(),
                 likeCount = it.getLikecount(),
                 commentCount = it.getCommentcount(),
-                image = PostImage.image().random(),
+                image = it.getImageUrl(it.getImage()),
                 isLike = it.getIsLike(),
                 isSave = it.getIsSave()
             )
@@ -73,7 +72,7 @@ class PostService(private val postRepository: PostRepository) {
                 username = it.getUsername(),
                 likeCount = it.getLikecount(),
                 commentCount = it.getCommentcount(),
-                image = PostImage.image().random(),
+                image = it.getImageUrl(it.getImage()),
                 isLike = it.getIsLike(),
                 isSave = it.getIsSave()
             )
@@ -120,7 +119,7 @@ class PostService(private val postRepository: PostRepository) {
                 username = it.getUsername(),
                 likeCount = it.getLikecount(),
                 commentCount = it.getCommentcount(),
-                image = PostImage.image().random(),
+                image = it.getImageUrl(it.getImage()),
                 isLike = it.getIsLike(),
                 isSave = it.getIsSave()
 

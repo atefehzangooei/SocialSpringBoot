@@ -69,7 +69,7 @@ class StoryService(private val storyRepository: StoryRepository,
             UserStory(
                 profileImage = it.getProfileImage(),
                 username = it.getUsername(),
-                image = it.getImage(),
+                image = it.getImageUrl(it.getImage()),
                 date = it.getDate(),
                 time = it.getTime(),
                 duration = STORY_DURATION
