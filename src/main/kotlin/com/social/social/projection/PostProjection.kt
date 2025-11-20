@@ -15,7 +15,7 @@ interface PostProjection {
     fun getProfileImage() : String
     fun getIsLike() : Boolean
     fun getIsSave() : Boolean
-    fun getImageUrl(imagePath : String): String = "$BASE_URL$imagePath"
+
 
 
 

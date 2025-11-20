@@ -1,5 +1,6 @@
 package com.social.social.service
 
+import com.social.social.dto.BASE_URL
 import com.social.social.dto.StoryResponse
 import com.social.social.dto.StringMessage
 import com.social.social.dto.UserStory
@@ -69,7 +70,7 @@ class StoryService(private val storyRepository: StoryRepository,
             UserStory(
                 profileImage = it.getProfileImage(),
                 username = it.getUsername(),
-                image = it.getImageUrl(it.getImage()),
+                image =  BASE_URL + it.getImage(),
                 date = it.getDate(),
                 time = it.getTime(),
                 duration = STORY_DURATION
