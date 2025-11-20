@@ -14,6 +14,7 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
         SELECT
           post.id as id,
           post.user_id as userid,
+          post.image as image,
           post.caption as caption,
           post.date as date, 
           post.time as time,
@@ -59,6 +60,7 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
         SELECT
           post.id as id,
           post.user_id as userid,
+          post.image as image,
           post.caption as caption,
           post.date as date, 
           post.time as time,
@@ -99,6 +101,7 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
           post.id as id,
           post.user_id as userid,
           post.caption as caption,
+          post.image as image,
           post.date as date, 
           post.time as time,
           (SELECT COUNT(*) FROM likes WHERE post_id = post.id ) as likecount,
