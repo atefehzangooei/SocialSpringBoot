@@ -26,6 +26,6 @@ data class Story (
 
     //duration in seconds
     @Column(name = "duration")
-    val duration : Int
+    val duration : Int = STORY_DURATION
 
 )

@@ -3,6 +3,10 @@ package com.social.social.controller
 import com.social.social.dto.StoryRequest
 import com.social.social.dto.StoryResponse
 import com.social.social.dto.StringMessage
+import com.social.social.model.Post
+import com.social.social.model.Story
+import com.social.social.repository.UserRepository
+import com.social.social.service.FileService
 import com.social.social.service.StoryService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
@@ -10,15 +14,31 @@ import org.springframework.web.multipart.MultipartFile
 
 @RestController
 @RequestMapping("/story")
-class StoryController(private val storyService: StoryService)
+class StoryController(
+    private val storyService: StoryService,
+    private val fileService: FileService,
+    private val userRepository: UserRepository
+    )
 {
-    
-    @PostMapping("/add", consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
-    fun addStory(@RequestPart("imageFile") imageFile : MultipartFile,
-                 @RequestPart("userId") userId : Long,
-                 @RequestPart("date") date : String,
-                 @RequestPart("time") time : String) : StoryResponse
-    = storyService.addStory(userId, imageFile, date, time)
+
+    @PostMapping("/upload" , consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
+
+    fun uploadStory(@RequestPart("image") image : MultipartFile,
+                 @RequestPart("story") request : StoryRequest) : StoryResponse
+    {
+        val imageAddress = fileService.uploadFile(image)
+        val user = userRepository.findById(request.userId)
+            .orElseThrow { RuntimeException("User Not Found") }
+
+        val story = Story(
+            user = user,
+            image = imageAddress,
+            date = request.date,
+            time = request.time
+        )
+
+        return storyService.addStory(story)
+    }
 
 
     @DeleteMapping("/delete/{storyId}")
