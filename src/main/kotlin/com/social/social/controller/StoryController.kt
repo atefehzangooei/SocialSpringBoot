@@ -22,10 +22,9 @@ class StoryController(
 {
 
     @PostMapping("/upload" , consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
-
     fun uploadStory(@RequestPart("image") image : MultipartFile,
-                 @RequestPart("story") request : StoryRequest) : StoryResponse
-    {
+                 @RequestPart("story") request : StoryRequest
+    ) : StoryResponse {
         val imageAddress = fileService.uploadFile(image)
         val user = userRepository.findById(request.userId)
             .orElseThrow { RuntimeException("User Not Found") }

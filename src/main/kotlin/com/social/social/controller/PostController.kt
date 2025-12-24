@@ -46,21 +46,6 @@ class PostController(private val postService: PostService,
     }
 
 
- /*   @PostMapping
-    fun addPost(@RequestBody request : PostRequest) : Post{
-        val user = userRepository.findById(request.userId)
-            .orElseThrow { RuntimeException("User Not Found") }
-
-        val post = Post(
-            user = user,
-            caption = request.caption,
-            date = request.date,
-            time = request.time
-        )
-
-        return postService.addPost(post)
-    }
-*/
     @GetMapping("/follower/{userId}/{lastSeenId}/{size}")
     fun getPostsByFollower(@PathVariable userId : Long,
                            @PathVariable lastSeenId : Long?,
@@ -81,4 +66,10 @@ class PostController(private val postService: PostService,
                    @PathVariable lastSeenId : Long?,
                    @PathVariable size : Int)
         = postService.searchPost(text, userId, lastSeenId, size)
+
+    @GetMapping("/allposts/{userId}/{lastSeenId}/{size}")
+    fun getAllPosts(@PathVariable userId : Long,
+                    @PathVariable lastSeenId : Long?,
+                    @PathVariable size : Int)
+     = postService.getAllPosts(userId, lastSeenId, size)
 }

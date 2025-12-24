@@ -127,4 +127,24 @@ class PostService(private val postRepository: PostRepository) {
             )
         }
     }
+
+    fun getAllPosts(userId : Long, lastSeenId: Long?, size : Int) : List<PostResponse> {
+        return postRepository.getAllPosts(userId, lastSeenId, size).map {
+            PostResponse(
+                id = it.getId(),
+                caption = it.getCaption(),
+                date = it.getDate(),
+                time = it.getTime(),
+                userId = it.getUserid(),
+                userProfile = it.getProfileImage(),
+                username = it.getUsername(),
+                likeCount = it.getLikecount(),
+                commentCount = it.getCommentcount(),
+                image =  BASE_URL + it.getImage(),
+                isLike = it.getIsLike(),
+                isSave = it.getIsSave()
+
+            )
+        }
+    }
 }

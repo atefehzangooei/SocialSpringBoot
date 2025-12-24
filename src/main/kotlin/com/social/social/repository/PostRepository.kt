@@ -137,4 +137,43 @@ interface PostRepository : JpaRepository<Post, Long> //primary key ==> Long(Id)
 
 
 
+    @Query("""
+        SELECT
+          post.id as id,
+          post.user_id as userid,
+          post.caption as caption,
+          post.image as image,
+          post.date as date, 
+          post.time as time,
+          (SELECT COUNT(*) FROM likes WHERE post_id = post.id ) as likecount,
+          (SELECT COUNT(*) FROM comment WHERE post_id = post.id ) as commentcount,
+          users.username as username,
+          users.profile_image as profileImage,
+          CASE WHEN EXISTS (
+        SELECT 1 
+        FROM likes  
+        WHERE likes.post_id = post.id AND likes.user_id = :userId
+    ) THEN true ELSE false END AS isLike,
+    
+    CASE WHEN EXISTS (
+        SELECT 1 
+        FROM save_post  
+        WHERE save_post.post_id = post.id AND save_post.user_id = :userId
+    ) THEN true ELSE false END AS isSave
+    
+        FROM post
+        LEFT JOIN users
+        ON post.user_id = users.id
+        
+        WHERE (:lastSeenId = -1 OR post.id < :lastSeenId) 
+        GROUP BY post.id, post.user_id, post.caption, post.date, post.time, users.username, users.profile_image
+        ORDER BY post.id DESC
+        LIMIT :size
+    """, nativeQuery = true)
+    fun getAllPosts(@Param("userId") userId : Long,
+                   @Param("lastSeenId") lastSeenId: Long?,
+                   @Param("size") size: Int) : List<PostProjection>
+
+
+
 }
