@@ -1,4 +1,4 @@
-package com.social.social.model
+package com.social.social.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

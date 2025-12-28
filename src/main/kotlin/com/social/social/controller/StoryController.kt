@@ -3,8 +3,7 @@ package com.social.social.controller
 import com.social.social.dto.StoryRequest
 import com.social.social.dto.StoryResponse
 import com.social.social.dto.StringMessage
-import com.social.social.model.Post
-import com.social.social.model.Story
+import com.social.social.entity.Story
 import com.social.social.repository.UserRepository
 import com.social.social.service.FileService
 import com.social.social.service.StoryService

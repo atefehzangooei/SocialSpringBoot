@@ -2,20 +2,13 @@ package com.social.social.controller
 
 import com.social.social.dto.PostRequest
 import com.social.social.dto.PostResponse
-import com.social.social.dto.SearchRequest
-import com.social.social.dto.StringMessage
-import com.social.social.model.Post
-import com.social.social.repository.PostRepository
+import com.social.social.entity.Post
 import com.social.social.repository.UserRepository
 import com.social.social.service.FileService
 import com.social.social.service.PostService
-import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
-import java.io.File
-import java.nio.file.Paths
 
 @RestController
 @RequestMapping("/posts")

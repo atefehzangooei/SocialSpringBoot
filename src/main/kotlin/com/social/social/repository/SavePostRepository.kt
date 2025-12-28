@@ -1,7 +1,7 @@
 package com.social.social.repository
 
 import com.social.social.dto.SavePostResponse
-import com.social.social.model.SavePost
+import com.social.social.entity.SavePost
 import jakarta.transaction.Transactional
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying

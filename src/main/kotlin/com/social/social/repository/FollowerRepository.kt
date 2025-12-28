@@ -1,7 +1,6 @@
 package com.social.social.repository
 
-import com.social.social.dto.FollowerResponse
-import com.social.social.model.Follower
+import com.social.social.entity.Follower
 import com.social.social.projection.FollowerProjection
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query

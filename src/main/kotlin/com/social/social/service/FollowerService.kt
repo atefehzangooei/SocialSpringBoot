@@ -3,7 +3,7 @@ package com.social.social.service
 import com.social.social.dto.FollowRequest
 import com.social.social.dto.FollowerResponse
 import com.social.social.dto.StringMessage
-import com.social.social.model.Follower
+import com.social.social.entity.Follower
 import com.social.social.repository.FollowerRepository
 import org.springframework.stereotype.Service
 

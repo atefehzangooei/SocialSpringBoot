@@ -1,15 +1,13 @@
 package com.social.social.service
 
 import com.social.social.dto.*
-import com.social.social.model.Post
-import com.social.social.model.STORY_DURATION
-import com.social.social.model.Story
+import com.social.social.entity.STORY_DURATION
+import com.social.social.entity.Story
 import com.social.social.repository.StoryRepository
 import com.social.social.repository.UserRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import org.springframework.web.multipart.MultipartFile
 
 @Service
 class StoryService(private val storyRepository: StoryRepository,

@@ -1,7 +1,6 @@
 package com.social.social.repository
 
-import com.social.social.dto.StringMessage
-import com.social.social.model.Like
+import com.social.social.entity.Like
 import jakarta.transaction.Transactional
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying

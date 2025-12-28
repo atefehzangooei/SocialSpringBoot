@@ -4,10 +4,9 @@ import com.social.social.dto.CommentReplay
 import com.social.social.dto.CommentRequest
 import com.social.social.dto.CommentResponse
 import com.social.social.dto.StringMessage
-import com.social.social.model.Comment
+import com.social.social.entity.Comment
 import com.social.social.repository.CommentRepository
 import com.social.social.repository.UserRepository
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service

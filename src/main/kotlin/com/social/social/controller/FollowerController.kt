@@ -2,7 +2,6 @@ package com.social.social.controller
 
 import com.social.social.dto.FollowRequest
 import com.social.social.dto.StringMessage
-import com.social.social.model.Follower
 import com.social.social.service.FollowerService
 import org.springframework.web.bind.annotation.*
 

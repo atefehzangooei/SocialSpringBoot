@@ -1,15 +1,11 @@
 package com.social.social.controller
 
 import com.social.social.dto.SavePostRequest
-import com.social.social.dto.SavePostResponse
 import com.social.social.dto.StringMessage
-import com.social.social.model.Like
-import com.social.social.model.SavePost
+import com.social.social.entity.SavePost
 import com.social.social.repository.PostRepository
 import com.social.social.repository.UserRepository
 import com.social.social.service.SavePostService
-import jakarta.transaction.Transactional
-import org.springframework.data.jpa.repository.Modifying
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

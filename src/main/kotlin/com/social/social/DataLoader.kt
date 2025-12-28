@@ -1,13 +1,9 @@
 package com.social.social
 
 import com.social.social.controller.PostController
-import com.social.social.controller.StoryController
-import com.social.social.dto.PostRequest
-import com.social.social.model.User
 import com.social.social.repository.PostRepository
 import com.social.social.repository.StoryRepository
 import com.social.social.repository.UserRepository
-import com.social.social.service.StoryService
 import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Component
 

@@ -1,9 +1,7 @@
 package com.social.social.service
 
-import com.social.social.dto.SavePostRequest
-import com.social.social.dto.SavePostResponse
 import com.social.social.dto.StringMessage
-import com.social.social.model.SavePost
+import com.social.social.entity.SavePost
 import com.social.social.repository.SavePostRepository
 import com.social.social.repository.UserRepository
 import org.springframework.stereotype.Service

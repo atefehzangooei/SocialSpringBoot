@@ -2,10 +2,8 @@ package com.social.social.service
 
 import com.social.social.dto.BASE_URL
 import com.social.social.dto.PostResponse
-import com.social.social.dto.SearchRequest
 
-import com.social.social.model.Post
-import com.social.social.projection.PostProjection
+import com.social.social.entity.Post
 import com.social.social.repository.PostRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

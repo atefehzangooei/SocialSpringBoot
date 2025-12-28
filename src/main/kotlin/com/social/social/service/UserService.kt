@@ -1,9 +1,8 @@
 package com.social.social.service
 
 import com.social.social.dto.*
-import com.social.social.model.User
+import com.social.social.entity.User
 import com.social.social.repository.UserRepository
-import org.apache.logging.log4j.message.StringFormattedMessage
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service

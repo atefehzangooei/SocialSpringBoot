@@ -2,12 +2,10 @@ package com.social.social.controller
 
 import com.social.social.dto.LikeRequest
 import com.social.social.dto.StringMessage
-import com.social.social.model.Like
+import com.social.social.entity.Like
 import com.social.social.repository.PostRepository
 import com.social.social.repository.UserRepository
 import com.social.social.service.LikeService
-import org.apache.coyote.Response
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

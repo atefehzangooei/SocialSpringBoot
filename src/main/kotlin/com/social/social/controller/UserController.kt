@@ -1,7 +1,7 @@
 package com.social.social.controller
 
 import com.social.social.dto.*
-import com.social.social.model.User
+import com.social.social.entity.User
 import com.social.social.service.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping

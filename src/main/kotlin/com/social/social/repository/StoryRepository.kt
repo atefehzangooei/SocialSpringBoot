@@ -1,6 +1,6 @@
 package com.social.social.repository
 
-import com.social.social.model.Story
+import com.social.social.entity.Story
 import com.social.social.projection.StoryProjection
 import com.social.social.projection.UserStoryProjection
 import jakarta.transaction.Transactional

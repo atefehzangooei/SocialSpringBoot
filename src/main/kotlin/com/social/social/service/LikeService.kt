@@ -1,7 +1,7 @@
 package com.social.social.service
 
 import com.social.social.dto.StringMessage
-import com.social.social.model.Like
+import com.social.social.entity.Like
 import com.social.social.repository.LikeRepository
 import org.springframework.stereotype.Service
 

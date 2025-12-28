@@ -1,8 +1,6 @@
 package com.social.social.repository
 
-import com.social.social.dto.SigninResponse
-import com.social.social.dto.StringMessage
-import com.social.social.model.User
+import com.social.social.entity.User
 import com.social.social.projection.SigninProjection
 import com.social.social.projection.UserInfoProjection
 import jakarta.transaction.Transactional
@@ -10,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Repository
 
 @Repository

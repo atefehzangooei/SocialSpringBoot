@@ -1,26 +1,26 @@
-package com.social.social.model
+package com.social.social.entity
 
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "save_post")
-data class SavePost (
-
+@Table(name = "followers")
+data class Follower(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id : Long = 0,
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    val user : User,
+    @JoinColumn(name = "follower_id", nullable = false)
+    val follower : User,
 
     @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)
-    val post : Post,
+    @JoinColumn(name = "following_id", nullable = false)
+    val following : User,
 
     @Column(name = "date")
     val date : String,
 
     @Column(name = "time")
     val time : String
+
 )
