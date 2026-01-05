@@ -1,6 +1,7 @@
 package com.social.social.service
 
 import com.social.social.dto.SigninRequest
+import com.social.social.dto.SigninResponse
 import com.social.social.dto.TokenResponse
 import com.social.social.repository.UserRepository
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -13,7 +14,7 @@ class AuthService(
     private val jwtService: JwtService
 ) {
 
-    fun login(request: SigninRequest): TokenResponse {
+    fun login(request: SigninRequest): SigninResponse {
         val user = userRepository.findByUsername(request.username)
             ?: throw RuntimeException("User not found")
 
