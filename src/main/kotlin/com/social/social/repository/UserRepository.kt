@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository
 @Repository
 interface UserRepository : JpaRepository<User,Long>
 {
+    fun findByUsername(username: String) : User?
+
     @Query(value = """
         SELECT COUNT(id) > 0
         FROM users
