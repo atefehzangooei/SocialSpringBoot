@@ -14,8 +14,8 @@ class AuthController(
     private val authService: AuthService
 ) {
 
-    @PostMapping("/login")
+    @PostMapping("/signin")
     fun login(@RequestBody request: SigninRequest): SigninResponse{
-        return authService.login(request)
+        return authService.signin(request)
     }
 }

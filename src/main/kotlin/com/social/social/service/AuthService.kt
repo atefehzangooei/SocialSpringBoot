@@ -14,7 +14,7 @@ class AuthService(
     private val jwtService: JwtService
 ) {
 
-    fun login(request: SigninRequest): SigninResponse {
+    fun signin(request: SigninRequest): SigninResponse {
         val user = userRepository.findByUsername(request.username)
             ?: throw RuntimeException("User not found")
 
@@ -24,6 +24,6 @@ class AuthService(
 
         val token = jwtService.generateToken(user.id)
 
-        return TokenResponse(token)
+        return SigninResponse(token)
     }
 }
