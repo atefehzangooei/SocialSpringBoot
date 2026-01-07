@@ -46,9 +46,15 @@ class JwtService {
         }
     }
 
+    // get username
+    fun extractUsername(token : String) : String {
+        return getClaims(token).subject
+    }
+
     //4. Read Claims
     private fun getClaims(token: String): Claims {
-        return Jwts.parserBuilder()
+        return Jwts
+            .parserBuilder()
             .setSigningKey(secretKey)
             .build()
             .parseClaimsJws(token)
